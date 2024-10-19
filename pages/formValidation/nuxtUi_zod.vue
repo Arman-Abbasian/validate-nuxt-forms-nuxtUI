@@ -1,32 +1,37 @@
-<script lang="ts">
+<script setup lang="ts">
+import { z } from 'zod'
+import type { FormSubmitEvent } from '#ui/types'
 
+const schema = z.object({
+  email: z.string().email('Invalid email'),
+  password: z.string().min(8, 'Must be at least 8 characters')
+})
 
-type FormStateType={
-    email:String,
-    password:String
+type Schema = z.output<typeof schema>
+
+const state = reactive({
+  email: undefined,
+  password: undefined
+})
+
+async function onSubmit (event: FormSubmitEvent<Schema>) {
+  // Do something with data
+  console.log(event.data)
 }
-const state:FormStateType=reactive({
-    email:"",
-    password:""
-});
-const onSubmit=(event:any)=>{
-console.log(event.data)
-}
-const schema=
 </script>
-<template>
-    <UForm :validate="schema" @submit="onSubmit" :state="state">
-        <UFormGroup label="Email" :error="!email && 'You must enter an email'" help="This is a nice email!">
-    <template #default="{ error }">
-      <UInput v-model="email" type="email" placeholder="Enter email" :trailing-icon="error ? 'i-heroicons-exclamation-triangle-20-solid' : undefined" />
-    </template>
 
-    <template #error="{ error }">
-      <span :class="[error ? 'text-red-500 dark:text-red-400' : 'text-primary-500 dark:text-primary-400']">
-        {{ error ? error : 'Your email is valid' }}
-      </span>
-    </template>
-  </UFormGroup>
+<template>
+  <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
+    <UFormGroup label="Email" name="email">
+      <UInput v-model="state.email" />
+    </UFormGroup>
+
+    <UFormGroup label="Password" name="password">
+      <UInput v-model="state.password" />
+    </UFormGroup>
+    <UButton type="submit" class="text-red-500">
+      Submit
+    </UButton>
+  </UForm>
 </template>
-</UForm>
-  </template>
+
