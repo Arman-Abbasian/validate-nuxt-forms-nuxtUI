@@ -9,7 +9,7 @@ const toggleMenu = () => {
 </script>
 
 <template>
-  <header class="bg-gray-800 text-white">
+  <header class="bg-primary-800 text-white">
     <nav class="container mx-auto flex items-center justify-between p-4">
       <!-- Menu for larger screens -->
       <ul class="hidden md:flex space-x-4">
@@ -36,8 +36,8 @@ const toggleMenu = () => {
 
     <!-- Mobile menu with transition -->
     <transition name="slide-down">
-      <div v-show="isMenuOpen" class="md:hidden bg-gray-800 text-white overflow-hidden">
-        <ul class="flex flex-col items-center space-y-4 py-2">
+      <div v-show="isMenuOpen" class="md:hidden bg-priamry-800 text-white overflow-hidden">
+        <ul class="flex flex-col pl-4 space-y-4 py-2">
           <li><a href="/" class="hover:text-gray-400">Home</a></li>
           <li><a href="/about-us" class="hover:text-gray-400">About Us</a></li>
           <li><a href="/more" class="hover:text-gray-400">More</a></li>
