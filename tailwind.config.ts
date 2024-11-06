@@ -4,7 +4,7 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       fontFamily: {
-        'afacad-flux': ['"Afacad Flux"', 'sans-serif'],
+        'afacad-flux': ['Afacad Flux', 'sans-serif'],
       },
       colors: {
         success: "#15803d",
